@@ -1,0 +1,550 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NoEstimatesDevelopmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Complete">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskId" Type="int" Nullable="false" />
+          <Property Name="IsComplete" Type="bit" Nullable="false" />
+          <Property Name="FinalizationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Key" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Highlight">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskId" Type="int" Nullable="false" />
+          <Property Name="Color" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="IsCompleted" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="FinalizationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Requirements">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="IsComplete" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="FinalizationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequirementId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TasksCategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoriesId" Type="int" Nullable="false" />
+          <Property Name="TasksId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Timer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskId" Type="int" Nullable="false" />
+          <Property Name="TimeInSeconds" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Complete__TaskId__29221CFB">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+          <End Role="Complete" Type="Self.Complete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Complete">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Highlight__TaskI__2645B050">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+          <End Role="Highlight" Type="Self.Highlight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Highlight">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Requireme__Proje__18EBB532">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="Requirements" Type="Self.Requirements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Requirements">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tasks__Requireme__1DB06A4F">
+          <End Role="Requirements" Type="Self.Requirements" Multiplicity="1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requirements">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="RequirementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TasksCate__Categ__208CD6FA">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="TasksCategories" Type="Self.TasksCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TasksCategories">
+              <PropertyRef Name="CategoriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TasksCate__Tasks__2180FB33">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+          <End Role="TasksCategories" Type="Self.TasksCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TasksCategories">
+              <PropertyRef Name="TasksId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Timer__TaskId__2BFE89A6">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+          <End Role="Timer" Type="Self.Timer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Timer">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NoEstimatesDevelopmentModelStoreContainer">
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="example" store:Type="Tables" />
+          <EntitySet Name="Complete" EntityType="Self.Complete" Schema="example" store:Type="Tables" />
+          <EntitySet Name="Configuration" EntityType="Self.Configuration" Schema="example" store:Type="Tables" />
+          <EntitySet Name="Highlight" EntityType="Self.Highlight" Schema="example" store:Type="Tables" />
+          <EntitySet Name="Projects" EntityType="Self.Projects" Schema="example" store:Type="Tables" />
+          <EntitySet Name="Requirements" EntityType="Self.Requirements" Schema="example" store:Type="Tables" />
+          <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="example" store:Type="Tables" />
+          <EntitySet Name="TasksCategories" EntityType="Self.TasksCategories" Schema="example" store:Type="Tables" />
+          <EntitySet Name="Timer" EntityType="Self.Timer" Schema="example" store:Type="Tables" />
+          <AssociationSet Name="FK__Complete__TaskId__29221CFB" Association="Self.FK__Complete__TaskId__29221CFB">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="Complete" EntitySet="Complete" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Highlight__TaskI__2645B050" Association="Self.FK__Highlight__TaskI__2645B050">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="Highlight" EntitySet="Highlight" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Requireme__Proje__18EBB532" Association="Self.FK__Requireme__Proje__18EBB532">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Requirements" EntitySet="Requirements" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tasks__Requireme__1DB06A4F" Association="Self.FK__Tasks__Requireme__1DB06A4F">
+            <End Role="Requirements" EntitySet="Requirements" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TasksCate__Categ__208CD6FA" Association="Self.FK__TasksCate__Categ__208CD6FA">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="TasksCategories" EntitySet="TasksCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TasksCate__Tasks__2180FB33" Association="Self.FK__TasksCate__Tasks__2180FB33">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="TasksCategories" EntitySet="TasksCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Timer__TaskId__2BFE89A6" Association="Self.FK__Timer__TaskId__2BFE89A6">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="Timer" EntitySet="Timer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NoEstimatesDevelopmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TasksCategories" Relationship="Self.FK__TasksCate__Categ__1B0907CE" FromRole="Categories" ToRole="TasksCategories" />
+        </EntityType>
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Key" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Requirement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsComplete" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FinalizationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK__Tasks__Requireme__164452B1" FromRole="Requirements" ToRole="Tasks" />
+          <NavigationProperty Name="Project" Relationship="NoEstimatesDevelopmentModel.FK__Requireme__Proje__1367E606" FromRole="Requirement" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="RequirementId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Requirement" Relationship="Self.FK__Tasks__Requireme__164452B1" FromRole="Tasks" ToRole="Requirements" />
+          <NavigationProperty Name="TasksCategories" Relationship="Self.FK__TasksCate__Tasks__1BFD2C07" FromRole="Tasks" ToRole="TasksCategories" />
+          <NavigationProperty Name="Completes" Relationship="NoEstimatesDevelopmentModel.FK__Complete__TaskId__01142BA1" FromRole="Task" ToRole="Complete" />
+          <NavigationProperty Name="Highlights" Relationship="NoEstimatesDevelopmentModel.FK__Highlight__TaskI__7E37BEF6" FromRole="Task" ToRole="Highlight" />
+          <NavigationProperty Name="Timers" Relationship="NoEstimatesDevelopmentModel.FK__Timer__TaskId__03F0984C" FromRole="Task" ToRole="Timer" />
+        </EntityType>
+        <EntityType Name="TasksCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CategoriesId" Type="Int32" Nullable="false" />
+          <Property Name="TasksId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__TasksCate__Categ__1B0907CE" FromRole="TasksCategories" ToRole="Categories" />
+          <NavigationProperty Name="Task" Relationship="Self.FK__TasksCate__Tasks__1BFD2C07" FromRole="TasksCategories" ToRole="Tasks" />
+        </EntityType>
+        <Association Name="FK__TasksCate__Categ__1B0907CE">
+          <End Role="Categories" Type="Self.Category" Multiplicity="1" />
+          <End Role="TasksCategories" Type="Self.TasksCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TasksCategories">
+              <PropertyRef Name="CategoriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tasks__Requireme__164452B1">
+          <End Role="Requirements" Type="Self.Requirement" Multiplicity="1" />
+          <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requirements">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="RequirementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TasksCate__Tasks__1BFD2C07">
+          <End Role="Tasks" Type="Self.Task" Multiplicity="1" />
+          <End Role="TasksCategories" Type="Self.TasksCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TasksCategories">
+              <PropertyRef Name="TasksId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NoEstimatesDevelopmentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Configurations" EntityType="Self.Configuration" />
+          <EntitySet Name="Requirements" EntityType="Self.Requirement" />
+          <EntitySet Name="Tasks" EntityType="Self.Task" />
+          <EntitySet Name="TasksCategories" EntityType="Self.TasksCategory" />
+          <AssociationSet Name="FK__TasksCate__Categ__1B0907CE" Association="Self.FK__TasksCate__Categ__1B0907CE">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="TasksCategories" EntitySet="TasksCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tasks__Requireme__164452B1" Association="Self.FK__Tasks__Requireme__164452B1">
+            <End Role="Requirements" EntitySet="Requirements" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TasksCate__Tasks__1BFD2C07" Association="Self.FK__TasksCate__Tasks__1BFD2C07">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="TasksCategories" EntitySet="TasksCategories" />
+          </AssociationSet>
+          <EntitySet Name="Projects" EntityType="NoEstimatesDevelopmentModel.Project" />
+          <AssociationSet Name="FK__Requireme__Proje__1367E606" Association="NoEstimatesDevelopmentModel.FK__Requireme__Proje__1367E606">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Requirement" EntitySet="Requirements" />
+          </AssociationSet>
+          <EntitySet Name="Completes" EntityType="NoEstimatesDevelopmentModel.Complete" />
+          <EntitySet Name="Highlights" EntityType="NoEstimatesDevelopmentModel.Highlight" />
+          <EntitySet Name="Timers" EntityType="NoEstimatesDevelopmentModel.Timer" />
+          <AssociationSet Name="FK__Complete__TaskId__01142BA1" Association="NoEstimatesDevelopmentModel.FK__Complete__TaskId__01142BA1">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="Complete" EntitySet="Completes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Highlight__TaskI__7E37BEF6" Association="NoEstimatesDevelopmentModel.FK__Highlight__TaskI__7E37BEF6">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="Highlight" EntitySet="Highlights" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Timer__TaskId__03F0984C" Association="NoEstimatesDevelopmentModel.FK__Timer__TaskId__03F0984C">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="Timer" EntitySet="Timers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsCompleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FinalizationDate" Type="DateTime" Precision="3" Nullable="false" />
+          <NavigationProperty Name="Requirements" Relationship="NoEstimatesDevelopmentModel.FK__Requireme__Proje__1367E606" FromRole="Project" ToRole="Requirement" />
+        </EntityType>
+        <Association Name="FK__Requireme__Proje__1367E606">
+          <End Type="NoEstimatesDevelopmentModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="NoEstimatesDevelopmentModel.Requirement" Role="Requirement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Requirement">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Complete">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="Int32" Nullable="false" />
+          <Property Name="IsComplete" Type="Boolean" Nullable="false" />
+          <Property Name="FinalizationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Task" Relationship="NoEstimatesDevelopmentModel.FK__Complete__TaskId__01142BA1" FromRole="Complete" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="Highlight">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="Int32" Nullable="false" />
+          <Property Name="Color" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Task" Relationship="NoEstimatesDevelopmentModel.FK__Highlight__TaskI__7E37BEF6" FromRole="Highlight" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="Timer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="Int32" Nullable="false" />
+          <Property Name="TimeInSeconds" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Task" Relationship="NoEstimatesDevelopmentModel.FK__Timer__TaskId__03F0984C" FromRole="Timer" ToRole="Task" />
+        </EntityType>
+        <Association Name="FK__Complete__TaskId__01142BA1">
+          <End Type="NoEstimatesDevelopmentModel.Task" Role="Task" Multiplicity="1" />
+          <End Type="NoEstimatesDevelopmentModel.Complete" Role="Complete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Complete">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Highlight__TaskI__7E37BEF6">
+          <End Type="NoEstimatesDevelopmentModel.Task" Role="Task" Multiplicity="1" />
+          <End Type="NoEstimatesDevelopmentModel.Highlight" Role="Highlight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Highlight">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Timer__TaskId__03F0984C">
+          <End Type="NoEstimatesDevelopmentModel.Task" Role="Task" Multiplicity="1" />
+          <End Type="NoEstimatesDevelopmentModel.Timer" Role="Timer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Timer">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NoEstimatesDevelopmentModelStoreContainer" CdmEntityContainer="NoEstimatesDevelopmentEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="NoEstimatesDevelopmentModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configurations">
+            <EntityTypeMapping TypeName="NoEstimatesDevelopmentModel.Configuration">
+              <MappingFragment StoreEntitySet="Configuration">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requirements">
+            <EntityTypeMapping TypeName="NoEstimatesDevelopmentModel.Requirement">
+              <MappingFragment StoreEntitySet="Requirements">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsComplete" ColumnName="IsComplete" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="FinalizationDate" ColumnName="FinalizationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="NoEstimatesDevelopmentModel.Task">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RequirementId" ColumnName="RequirementId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TasksCategories">
+            <EntityTypeMapping TypeName="NoEstimatesDevelopmentModel.TasksCategory">
+              <MappingFragment StoreEntitySet="TasksCategories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CategoriesId" ColumnName="CategoriesId" />
+                <ScalarProperty Name="TasksId" ColumnName="TasksId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="NoEstimatesDevelopmentModel.Project">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="FinalizationDate" ColumnName="FinalizationDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Completes">
+            <EntityTypeMapping TypeName="NoEstimatesDevelopmentModel.Complete">
+              <MappingFragment StoreEntitySet="Complete">
+                <ScalarProperty Name="FinalizationDate" ColumnName="FinalizationDate" />
+                <ScalarProperty Name="IsComplete" ColumnName="IsComplete" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Highlights">
+            <EntityTypeMapping TypeName="NoEstimatesDevelopmentModel.Highlight">
+              <MappingFragment StoreEntitySet="Highlight">
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Timers">
+            <EntityTypeMapping TypeName="NoEstimatesDevelopmentModel.Timer">
+              <MappingFragment StoreEntitySet="Timer">
+                <ScalarProperty Name="TimeInSeconds" ColumnName="TimeInSeconds" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

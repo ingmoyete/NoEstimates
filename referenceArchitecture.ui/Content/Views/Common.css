@@ -1,0 +1,89 @@
+﻿/* DATATABLES ============================================================ */
+/*Center text inside*/
+.helper-center {
+    text-align: center;
+    vertical-align: middle!important;
+}
+
+/*Heading of section projects*/
+.tableHeading.panel-heading{
+    font-size: 20px;
+}
+
+/* Allow to remove the top left cells*/
+.noCellStyle{
+    visibility:hidden;
+}
+
+/* Allow to remove the top left cells*/
+table.table-bordered.dataTable {
+    border-collapse: collapse!important;
+}
+
+/* Size of the icons link in table*/
+.tableIconLink{
+    font-size: 24px;
+    padding-right:4px;
+    padding-left:4px;
+    text-decoration:none!important;
+}
+
+/* The colored row of the datatable*/
+.row-Colored {
+    background-color: white!important;
+    color:black;
+    font-weight: bold;
+}
+
+/* MODALS FORM ============================================================ */
+.modal-dialog label{
+    margin-top:10px;
+}
+
+/* PAGE HEADER ============================================================ */
+.page-header{
+    font-size: 20px;
+}
+
+/* HELPERS =========================================================*/
+.overlay{
+    background: url(../Images/transpBrown10.png);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.hp-max-z-index{
+    z-index: 10000;
+}
+.hp-middle-z-index{
+    z-index: 5000;
+}
+.hp-min-z-index{
+    z-index: 1;
+}
+
+.hp-visibilityHidden{
+    visibility:hidden;
+}
+
+.hp-inline{
+    display: inline;
+}
+
+.hp-button-no-style{
+    background  : none;
+    cursor  : pointer;
+    color   : transparent;
+    border  : none;
+}
+button.hp-button-no-style:focus {outline:0;}
+/* ICONS =========================================================*/
+.exclamationError{
+    color: red;
+    font-size: 20px;
+}
+
+
+
+

@@ -1,0 +1,330 @@
+﻿@model NoEstimates.Core.DTO.DTOStatisticView
+@using NoEstimates.Core.Enums
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel-heading">
+            <div class="page-header">
+                <i class="fa @LocalResources["itemIcon"] fa-fw"></i> @Model.ItemStatisticName
+                <a href="@Model.ReturnUrl" class="btn btn-default btn-sm dropdown-toggle pull-right">
+                    <span class="fa fa-mail-reply fa-fw"></span>@LocalResources["buttonText"]
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<!-- Time Axis =============== -->
+<input type="hidden" class="timeAxis" value="@Model.TimeAxis">
+
+<!-- Acumulative =============== -->
+<input type="hidden" class="acumulativeGraph" value="@Model.AcumulativeGraphJson">
+
+<div class="row page-header plotArea">
+    <div class="col-lg-10">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-bar-chart-o fa-fw"></i> @LocalResources["acumulativeTitle"]
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            @LocalResources["optionTitle"]
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu pull-right" role="menu" data-graph="@((int)StatisticGraph.Acumulative)">
+                            <li>
+                                <a href="#" data-time-axis="@((int)StatisticTimeAxis.Hours)">@LocalResources["option1"]</a>
+                            </li>
+                            <li>
+                                <a href="#" data-time-axis="@((int)StatisticTimeAxis.Days)">@LocalResources["option2"]</a>
+                            </li>
+                            <li>
+                                <a href="#" data-time-axis="@((int)StatisticTimeAxis.Weeks)">@LocalResources["option3"]</a>
+                            </li>
+                            <li>
+                                <a href="#" data-time-axis="@((int)StatisticTimeAxis.Months)">@LocalResources["option4"]</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACUMULATIVE CONTAINER ======== -->
+            <div class="panel-body flot-chart">
+                <div id="area-chart" class="flot-chart-content acumulativeContainer"></div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+    <!-- /.col-lg-8 -->
+    <div class="col-lg-2">
+        <div class="panel firstAcu">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-comments fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@Model.AcumulativeGraph.AveragePercentageHours</div>
+                        <div class="title">@LocalResources["acumulativeHour"]</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="panel secondAcu">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-tasks fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@Model.AcumulativeGraph.AveragePercentageDays</div>
+                        <div class="title">@LocalResources["acumulativeDay"]</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="panel thirdAcu">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-shopping-cart fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@Model.AcumulativeGraph.AveragePercentageWeeks</div>
+                        <div class="title">@LocalResources["acumulativeWeek"]</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="panel fourthAcu">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-support fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@Model.AcumulativeGraph.AveragePercentageMonths</div>
+                        <div class="title">@LocalResources["acumulativeMonth"]</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.col-lg-4 -->
+</div>
+
+<!-- Velocity =============== -->
+<input type="hidden" class="velocityGraph" value="@Model.VelocityGraphJson">
+
+<div class="row page-header plotArea">
+    <div class="col-lg-10">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <i class="fa fa-bar-chart-o fa-fw"></i> @LocalResources["velocityTitle"]
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            @LocalResources["optionTitle"]
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu pull-right" role="menu" data-graph="@((int)StatisticGraph.Velocity)">
+                            <li>
+                                <a href="#" data-time-axis="@((int)StatisticTimeAxis.Hours)">@LocalResources["option1"]</a>
+                            </li>
+                            <li>
+                                <a href="#" data-time-axis="@((int)StatisticTimeAxis.Days)">@LocalResources["option2"]</a>
+                            </li>
+                            <li>
+                                <a href="#" data-time-axis="@((int)StatisticTimeAxis.Weeks)">@LocalResources["option3"]</a>
+                            </li>
+                            <li>
+                                <a href="#" data-time-axis="@((int)StatisticTimeAxis.Months)">@LocalResources["option4"]</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VELOCITY CONTAINER ======== -->
+            <div class="panel-body flot-chart">
+                <div id="area-chart" class="flot-chart-content velocityContainer"></div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+    <!-- /.col-lg-8 -->
+    <div class="col-lg-2">
+        <div class="panel velFirst">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-comments fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@Model.VelocityGraph.AverageVelocityHours</div>
+                        <div class="title">@LocalResources["velocityHour"]</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="panel velSecond">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-tasks fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@Model.VelocityGraph.AverageVelocityDays</div>
+                        <div class="title">@LocalResources["velocityDay"]</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="panel velThird">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-shopping-cart fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@Model.VelocityGraph.AverageVelocityWeeks</div>
+                        <div class="title">@LocalResources["velocityWeek"]</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="panel velFouth">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-support fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@Model.VelocityGraph.AverageVelocityMonths</div>
+                        <div class="title">@LocalResources["velocityMonth"]</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.col-lg-4 -->
+</div>
+
+<!-- Completion =============== -->
+<input type="hidden" class="completionGraph" value="@Model.CompletionGraphJson">
+<input type="hidden" class="estimationLabel" value="@LocalResources["estimationLabel"]">
+
+<div class="row page-header plotArea">
+    <div class="col-lg-10">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <i class="fa fa-bar-chart-o fa-fw"></i> @LocalResources["completionTitle"] (R = @Model.CompletionGraph.R)
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            @LocalResources["optionTitle"]
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu pull-right" role="menu" data-graph="@((int)StatisticGraph.Completion)">
+                            <li>
+                                <a href="#" data-time-axis="@((int)StatisticTimeAxis.Hours)">@LocalResources["option1"]</a>
+                            </li>
+                            <li>
+                                <a href="#" data-time-axis="@((int)StatisticTimeAxis.Days)">@LocalResources["option2"]</a>
+                            </li>
+                            <li>
+                                <a href="#" data-time-axis="@((int)StatisticTimeAxis.Weeks)">@LocalResources["option3"]</a>
+                            </li>
+                            <li>
+                                <a href="#" data-time-axis="@((int)StatisticTimeAxis.Months)">@LocalResources["option4"]</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACUMULATIVE CONTAINER ======== -->
+            <div class="panel-body flot-chart">
+                <div id="area-chart" class="flot-chart-content completionContainer"></div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+    <!-- /.col-lg-8 -->
+    <div class="col-lg-2">
+        <div class="panel firstCompletion">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-comments fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@Model.CompletionGraph.AverageRemainingTimeHours</div>
+                        <div class="title">@LocalResources["completionHour"]</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="panel secondCompletion">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-tasks fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@Model.CompletionGraph.AverageRemainingTimeDays</div>
+                        <div class="title">@LocalResources["completionDays"]</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="panel thirdCompletion">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-shopping-cart fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@Model.CompletionGraph.AverageRemainingTimeWeeks</div>
+                        <div class="title">@LocalResources["completionWeeks"]</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="panel fourthCompletion">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-support fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@Model.CompletionGraph.AverageRemainingTimeMonths</div>
+                        <div class="title">@LocalResources["completionMonths"]</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.col-lg-4 -->
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jsTemplate/flot")
+    @Scripts.Render("~/bundles/Components")
+    @Scripts.Render("~/jsViews/Statistic")
+}
+

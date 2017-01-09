@@ -1,0 +1,71 @@
+﻿/* BOXES =======================================*/
+/* Size of the number*/
+.plotArea .huge{
+    font-size : 20px;
+}
+/* Size of the icon */
+.plotArea .fa-5x{
+    font-size : 1.5em;
+}
+/* Size of the title*/
+.plotArea  .title{
+    font-size : 14px;
+}
+
+/* ACUMULATIVE BOXES =======================================*/
+.panel{
+    color: white;
+}
+.firstAcu{
+    border-color: #275d8b;
+    background-color: #275d8b;
+}
+
+.secondAcu{
+    border-color: #3277b3;
+    background-color: #3277b3;
+}
+
+.thirdAcu{
+    border-color: #4c91cd;
+    background-color: #4c91cd;
+}
+
+.fourthAcu{
+    border-color: 	 #74a9d8;
+    background-color: 	 #74a9d8;
+}
+
+.velFirst{
+    border-color: #367c36;
+    background-color: #367c36;
+}
+.velSecond{
+    border-color: #46a046;
+    background-color: #46a046;
+}
+.velThird{
+    border-color: #83c983;
+    background-color: #5fb95f;
+}
+.velFouth{
+    border-color: #83c983;
+    background-color: #83c983;
+}
+
+.firstCompletion{
+    border-color: #a4660e;
+    background-color: #a4660e;
+}
+.secondCompletion{
+    border-color: #d38312;
+    background-color: #d38312;
+}
+.thirdCompletion{
+    border-color: #ed9c2c;
+    background-color: #ed9c2c;
+}
+.fourthCompletion{
+    border-color: #f1b25b;
+    background-color: #f1b25b;
+}

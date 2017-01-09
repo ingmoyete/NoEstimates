@@ -1,0 +1,10 @@
+id,text,Descripcion
+title,Projects,title
+heading,Projects,heading
+createProjectLink,New Project,link
+deleteProject,Delete Project,tooltip
+projectStatistics,See this project statistics,tooltip
+editProject,Edit Project,tooltip
+toRequirements,Go to requirements,tooltip
+headingDeleteModal,Eliminar Proyecto,modal
+textDeleteModal,"Estas seguro que quieres eliminar el proyecto: ""projectName""",modal

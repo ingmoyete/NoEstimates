@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6C6DE451-8B93-4364-AA5E-DD4AD35CEFEF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NoEstimates.Core</RootNamespace>
+    <AssemblyName>NoEstimates.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.2.16.3.0\lib\net45\CsvHelper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=3.15.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.3.15.0\lib\net40\MathNet.Numerics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="0.- Base\2.- BaseController\DictionaryWrapper\LikeBaseController.cs" />
+    <Compile Include="0.- Base\2.- BaseController\DictionaryWrapper\ModelStateDictionaryWrapper.cs" />
+    <Compile Include="0.- Base\2.- BaseController\IControllerUI.cs" />
+    <Compile Include="0.- Base\2.- BaseController\IModelState.cs" />
+    <Compile Include="0.- Base\2.- BaseController\MVCWrapper\BaseController.cs" />
+    <Compile Include="0.- Base\2.- BaseController\MVCWrapper\ModelStateMVCWrapper.cs" />
+    <Compile Include="0.- Base\1.- DTOBase\DTOBase.cs" />
+    <Compile Include="0.- Base\1.- DTOBase\IDTOBase.cs" />
+    <Compile Include="1.- DTO\DTOAcumulativeStatistic.cs" />
+    <Compile Include="1.- DTO\DTOAxisLimitJqueryFlot.cs" />
+    <Compile Include="1.- DTO\DTOComplete.cs" />
+    <Compile Include="1.- DTO\DTOCompletionStatistic.cs" />
+    <Compile Include="1.- DTO\DTODeleteModal.cs" />
+    <Compile Include="1.- DTO\DTOHighlightColor.cs" />
+    <Compile Include="1.- DTO\DTOIdsNames.cs" />
+    <Compile Include="1.- DTO\DTOLineFitParameters.cs" />
+    <Compile Include="1.- DTO\DTOMarkingsJqueryFlot.cs" />
+    <Compile Include="1.- DTO\DTOProject.cs" />
+    <Compile Include="1.- DTO\DTOProjectDataTable.cs" />
+    <Compile Include="1.- DTO\DTOProjectStatistic.cs" />
+    <Compile Include="1.- DTO\DTORequirementDataTable.cs" />
+    <Compile Include="1.- DTO\DTORequirements.cs" />
+    <Compile Include="1.- DTO\DTORequirementView.cs" />
+    <Compile Include="1.- DTO\DTOStatistic.cs" />
+    <Compile Include="1.- DTO\DTOStatisticView.cs" />
+    <Compile Include="1.- DTO\DTOTask.cs" />
+    <Compile Include="1.- DTO\DTOTaskPanel.cs" />
+    <Compile Include="1.- DTO\DTOTaskView.cs" />
+    <Compile Include="1.- DTO\DTOTimer.cs" />
+    <Compile Include="1.- DTO\DTOVelocityStatistic.cs" />
+    <Compile Include="7.- Helpers\1.- DateHelper\DateHp.cs" />
+    <Compile Include="7.- Helpers\1.- DateHelper\IDateHp.cs" />
+    <Compile Include="7.- Helpers\hp.cs" />
+    <Compile Include="1.- DTO\DTOExample.cs" />
+    <Compile Include="2.- Exceptions\Exceptions.cs" />
+    <Compile Include="3.- Enums\Enums.cs" />
+    <Compile Include="4.- Logger\ILogger.cs" />
+    <Compile Include="4.- Logger\LoggerService.cs" />
+    <Compile Include="5.- Cache\CacheService.cs" />
+    <Compile Include="5.- Cache\ICache.cs" />
+    <Compile Include="6.- Resources\IResource.cs" />
+    <Compile Include="6.- Resources\ResourceCsvService.cs" />
+    <Compile Include="7.- Helpers\Ihp.cs" />
+    <Compile Include="8.- ClientValidations\1.- Attributes\IsNiceInteger.cs" />
+    <Compile Include="8.- ClientValidations\1.- Attributes\StringNumberIsEqualToIntNumber.cs" />
+    <Compile Include="9.- DataTableService\DataTableJson.cs" />
+    <Compile Include="9.- DataTableService\DataTableService.cs" />
+    <Compile Include="9.- DataTableService\IDataTableService.cs" />
+    <Compile Include="9.- DataTableService\DataTableParams.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

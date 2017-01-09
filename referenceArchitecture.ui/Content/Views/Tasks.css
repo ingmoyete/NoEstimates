@@ -1,0 +1,122 @@
+﻿
+/* TEXT ============================================================*/
+/* Estile of the text*/
+.taskText{
+    border: none;
+    width: 100%;
+    height:105px;
+}
+/* Estile disable for the task text*/
+.taskText:disabled{
+    background-color: white;
+}
+
+/* HEADER: ============================================================*/
+.page-header .btn{
+    margin-left: 10px;
+}
+/* PANEL FOOTER ============================================================*/
+/* Set margin between buttons*/
+.panel-footer .btn{
+    margin-right:7px;
+}
+
+/* Set width and style of input text timer*/
+.timer{
+    width: 70px;
+    height: 30px;
+    padding-left: 5px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+/*Remove margin of form group*/
+.panel-footer .form-group{
+    margin-bottom: 0;
+}
+
+/* ERROR AND EXCLAMATIONS ICONS ============================================================*/
+/*Style of the exclamation error when submiting text*/
+.textSubmitingError{
+    margin-right: 10px;
+}
+
+/*Style of the error*/
+.errorChangingColor{
+    color: white;
+}
+
+/* Style of loading icon in fooger*/
+.loadingIconButtonsInFooter{
+    margin-right: 10px;
+}
+
+.ErrorIconButtonsInFooter{
+    margin-right: 0;
+}
+
+/* REMOVE TASK ICON ============================================================*/
+.removeTaskIcon{
+    padding:0;
+    margin-left:7px;
+    cursor: pointer;
+}
+
+.removeTaskIcon i.fa{
+    font-size:18px; 
+    color:white!important;
+}
+
+/* COLOR OF HIGHLIGHTING ============================================================*/
+/* Color incons above the panel of the task. Remove style of the button*/
+button.colorIcons{
+    background  : none;
+    cursor  : pointer;
+    color   : transparent;
+    border  : none;
+    padding: 0 6px 0 0;
+}
+/* Remove the focus of the clicked button*/
+button.colorIcons:focus {outline:0;}
+    
+.colorRed{
+    color: #d9534f;
+}
+
+.colorYellow{
+    color: #f0ad4e;
+}
+.colorGreen{
+    color: #5cb85c;
+}
+
+.colorBlue{
+    color: #337ab7;
+}
+
+.colorGray{
+    color:#ddd;
+}
+
+.colorWhite{
+    color: white;
+    cursor:default;
+}
+
+.colorLightBlue{
+    color: #d9edf7;
+}
+
+
+
+

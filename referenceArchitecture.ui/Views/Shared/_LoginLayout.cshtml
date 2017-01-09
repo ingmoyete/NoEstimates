@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/cssTemplate")
+    @Styles.Render("~/Content/cssTemplate/dataTable")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @RenderBody()
+
+    <!--  START : Routes and messages  -->
+    @RenderPage("RoutesAndMessages.cshtml")
+    <!--  END: Routes and messages  -->
+
+    @Scripts.Render("~/bundles/jsTemplate")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,86 @@
+﻿@using NoEstimates.Core.DTO
+@model NoEstimates.Core.DTO.DTORequirementView
+@{
+    ViewBag.Title = LocalResources["title"];
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel-heading">
+            <div class="page-header">
+                <a href="@Url.Action("Index", "Projects")"><i class="fa @GlobalResources["projectIcon"] fa-fw"></i> @Model.ProjectName /</a>
+                <i class="fa fa-sitemap fa-fw"></i> @LocalResources["heading"]
+                <a href="#" class="btn btn-default btn-sm dropdown-toggle pull-right js-insert-requirement" 
+                   data-toggle="modal" 
+                   data-target="#insertRequirementsModal"
+                   data-backdrop="static" 
+                   data-keyboard="false"
+                   data-project-id="@Model.ProjectId">
+                    <span class="fa fa-plus fa-fw"></span>@LocalResources["createRequirementLink"]
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+                <!-- /.panel-heading -->
+        <div class="panel-body">
+            <table width="100%" class="table table-bordered table-hover" id="dataTables-requirements">
+                <thead class="row-Colored">
+                    <tr>
+                        <th>Requirement</th>
+                        <th>Creation Date</th>
+                        <th>Status</th>
+                        <th class="noCellStyle"></th>
+                        <th class="noCellStyle"></th>
+                        <th class="noCellStyle"></th>
+                        <th class="noCellStyle"></th><!--Projects-style add class-->
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                  
+                </tbody>
+            </table>
+            <!-- /.table-responsive -->
+
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<!--Start : Insert Modal -->
+@Html.Partial("_InsertAndEditReqModal", new string[] { "insertRequirementsModal", "Insert Requirements" })
+@Html.Partial("_InsertAndEditReqModal", new string[] { "editRequirementsModal", "Edit Requirements" })
+@Html.Partial("_DeleteModal", new DTODeleteModal { IdModal = "deleteRequirementModal", Heading = LocalResources["headingDeleteModal"], Text = LocalResources["textDeleteModal"] })
+
+<!--End : Insert Modal -->
+
+@section scripts{
+
+
+    <script>
+        appResources.allRequirementsUrl = '@Url.Action("Index", "Requirements", new { ProjectId = Model.ProjectId})';
+        appResources.dataTableRequirementsAjaxHandler = '@Url.Action("DataTableAjaxHandler", "Requirements", new { ProjectId = Model.ProjectId })';
+
+        var requirementResources = requirementResources || {};
+
+        requirementResources.requirementStatistics = '@LocalResources["requirementStatistics"]';
+        requirementResources.deleteRequirement = '@LocalResources["deleteRequirement"]';
+        requirementResources.editRequirement = '@LocalResources["editRequirement"]';
+        requirementResources.toTasks = '@LocalResources["toTasks"]';
+    </script>
+
+    @Scripts.Render("~/bundles/jsTemplate/dataTable")
+    @Scripts.Render("~/jsViews/Requirements")
+}
+
+
+
+
+

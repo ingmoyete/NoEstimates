@@ -1,0 +1,13 @@
+Columna1,Columna2,Columna3
+id,text,Descripcion
+title,Tasks,title
+heading,Tasks,heading
+createRequirementLink,New Task,link
+filterButton,Filter By,button
+finishTaskButton,Finish Task,timer
+openTaskButton,Open Task,timer
+yellowButton,Yellow,filter
+greenButton,Green,filter
+redButton,Red,filter
+completeButton,Complete,filter
+blueButton,Blue,filter

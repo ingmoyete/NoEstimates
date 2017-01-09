@@ -1,0 +1,32 @@
+﻿<ul class="nav" id="side-menu">
+
+    <li>
+        <a class="" href="@Url.Action("Index", "DashBoard")"><i class="fa @GlobalResources["dashboardIcon"] fa-fw"></i> @GlobalResources["dashboardLink"]</a>
+    </li>
+    
+    <li>
+        <a href="@Url.Action("Index", "Projects")"><i class="fa @GlobalResources["projectIcon"] fa-fw"></i> @GlobalResources["projectsLink"]</a>
+    </li>
+    <li>
+        <a href="#"><i class="fa fa-list-alt fa-fw"></i> @GlobalResources["estimationsLink"]<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            <li>
+                <a href="#">Second Level Item</a>
+            </li>
+            <li>
+                <a href="#">Second Level Item</a>
+            </li>
+
+            <li>
+                <a href="#">Second Level Item</a>
+            </li>
+            
+        </ul>
+        <!-- /.nav-second-level -->
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "Configuration")"><i class="fa @GlobalResources["configurationIcon"] fa-fw"></i> @GlobalResources["configurationLink"]</a>
+    </li>
+    
+    
+</ul>

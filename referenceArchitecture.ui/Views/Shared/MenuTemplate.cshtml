@@ -1,0 +1,100 @@
+﻿<ul class="nav" id="side-menu">
+    <li class="sidebar-search">
+        <div class="input-group custom-search-form">
+            <input type="text" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+        <!-- /input-group -->
+    </li>
+    <li>
+        <a href="@Url.Action("DashBoard", "Template")"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+    </li>
+    <li>
+        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            <li>
+                <a href="@Url.Action("Charts", "Template")">Flot Charts</a>
+            </li>
+            <li>
+                <a href="#">Morris.js Charts (Not available)</a>
+            </li>
+        </ul>
+        <!-- /.nav-second-level -->
+    </li>
+    <li>
+        <a href="@Url.Action("Tables", "Template")"><i class="fa fa-table fa-fw"></i> Tables</a>
+    </li>
+    <li>
+        <a href="@Url.Action("Forms", "Template")"><i class="fa fa-edit fa-fw"></i> Forms</a>
+    </li>
+    <li>
+        <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            <li>
+                <a href="@Url.Action("Panels", "Template")">Panels and Wells</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Buttons", "Template")">Buttons</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Notifications", "Template")">Notifications</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Typo", "Template")">Typography</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Icons", "Template")"> Icons</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Grid", "Template")">Grid</a>
+            </li>
+        </ul>
+        <!-- /.nav-second-level -->
+    </li>
+    <li>
+        <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            <li>
+                <a href="#">Second Level Item</a>
+            </li>
+            <li>
+                <a href="#">Second Level Item</a>
+            </li>
+            <li>
+                <a href="#">Third Level <span class="fa arrow"></span></a>
+                <ul class="nav nav-third-level">
+                    <li>
+                        <a href="#">Third Level Item</a>
+                    </li>
+                    <li>
+                        <a href="#">Third Level Item</a>
+                    </li>
+                    <li>
+                        <a href="#">Third Level Item</a>
+                    </li>
+                    <li>
+                        <a href="#">Third Level Item</a>
+                    </li>
+                </ul>
+                <!-- /.nav-third-level -->
+            </li>
+        </ul>
+        <!-- /.nav-second-level -->
+    </li>
+    <li>
+        <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            <li>
+                <a href="#">Blank Page (Not available)</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Login", "Template")">Login Page</a>
+            </li>
+        </ul>
+        <!-- /.nav-second-level -->
+    </li>
+</ul>

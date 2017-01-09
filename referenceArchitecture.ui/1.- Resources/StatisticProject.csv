@@ -1,0 +1,24 @@
+id,text,Description
+itemIcon,fa-briefcase,itemIcon
+acumulativeTitle,Acumulative,graphTitle
+velocityTitle,Velocity,graphTitle
+velocityDay,Requirement / Day,velocityUnits
+velocityHour,Requirement / Hour,velocityUnits
+velocityWeek,Requirement / Week,velocityUnits
+velocityMonth,Requirement / Month,velocityUnits
+acumulativeDay,Percentage / Day,acumulativeUnits
+acumulativeHour,Percentage / Hour,acumulativeUnits
+acumulativeWeek,Percentage / Week,acumulativeUnits
+acumulativeMonth,Percentage / Month,acumulativeUnits
+completionTitle,Completion,graphTitle
+completionHour,Hours left,completionUnits
+completionDays,Days left,completionUnits
+completionWeeks,Weeks left,completionUnits
+completionMonths,Months left,completionUnits
+estimationLabel,Total Completion: ,Graph Label
+option1,Hours,jsActionMenu
+option2,Days,jsActionMenu
+option3,Weeks,jsActionMenu
+option4,Months,jsActionMenu
+optionTitle,Change X Axis,jsActionMenu
+buttonText,Return To last Page,buttonText

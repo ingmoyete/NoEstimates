@@ -1,0 +1,77 @@
+﻿@using NoEstimates.Core.DTO
+
+@{
+    ViewBag.Title = LocalResources["title"];
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel-heading">
+            <div class="page-header">
+                <i class="fa @GlobalResources["projectIcon"] fa-fw"></i> @LocalResources["heading"]
+                <a href="#" class="btn btn-default btn-sm dropdown-toggle pull-right" 
+                   data-toggle="modal" 
+                   data-target="#insertProjectModal"
+                   data-backdrop="static" 
+                   data-keyboard="false">
+                    <span class="fa fa-plus fa-fw"></span>@LocalResources["createProjectLink"]
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <table width="100%" class="table table-bordered table-hover" id="dataTables-example">
+                <thead class="row-Colored">
+                    <tr>
+                        <th>Name</th>
+                        <th>Creation Date</th>
+                        <th>Status</th>
+                        <th class="noCellStyle"></th>
+                        <th class="noCellStyle"></th>
+                        <th class="noCellStyle"></th>
+                        <th class="noCellStyle"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                </tbody>
+            </table>
+            <!-- /.table-responsive -->
+
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<!--Start : Modals -->
+@Html.Partial("_InsertAndEditModal", new string[] { "insertProjectModal", "Insert Project"})
+@Html.Partial("_InsertAndEditModal", new string[] { "editProjectModal", "Edit Project" })
+@Html.Partial("_DeleteModal", new DTODeleteModal { IdModal = "deleteProjectModal", Heading = LocalResources["headingDeleteModal"], Text = LocalResources["textDeleteModal"] })
+
+<!-- A bit of javascript for the  -->
+<!--End : Modals -->
+
+
+@section scripts{
+
+    <script>
+            var projectResources = projectResources || {};
+
+            projectResources.projectStatistics = '@LocalResources["projectStatistics"]';
+            projectResources.deleteProject = '@LocalResources["deleteProject"]';
+            projectResources.editProject = '@LocalResources["editProject"]';
+            projectResources.toRequirements = '@LocalResources["toRequirements"]';
+    </script>
+
+    @Scripts.Render("~/bundles/jsTemplate/dataTable")
+    @Scripts.Render("~/jsViews/Projects")
+}
+

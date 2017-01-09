@@ -1,0 +1,45 @@
+﻿<div class="setOfIcons hidden">
+    <!-- Exclamation error for timer -->
+    <i class="exclamationError fa fa-exclamation fa-fw" title="" rel="tooltip" data-placement="top"></i>
+    <!-- Loading icon for editing text-->
+    <i class="loadingIcon fa fa-refresh fa-spin fa-fw"></i>
+</div>
+
+<script>
+    var appResources = appResources || {};
+
+    // Messages (!!IMPORTANT When this get big, consider to move the messages to specific views using the scripts section )
+    appResources.minuteError = '@GlobalResources["minuteError"]';
+    appResources.secondError = '@GlobalResources["secondError"]';
+    appResources.hourError = '@GlobalResources["hourError"]';
+    appResources.submitingTextError = '@GlobalResources["submitingTextError"]';
+    appResources.changingHighlightError = '@GlobalResources["changinHighlightError"]';
+    appResources.statusSaveError = '@GlobalResources["statusSaveError"]';
+    appResources.saveTimerError = '@GlobalResources["saveTimerError"]';
+
+    // Urls
+    appResources.allTasksUrl = '';
+    appResources.createTaskUrl = '@Url.Action("InsertTask", "Tasks")';
+    appResources.editTaskUrl = '@Url.Action("UpdateTask", "Tasks")';
+    appResources.writeHighlight = '@Url.Action("WriteHighlight", "Tasks")';
+    appResources.writeComplete = '@Url.Action("WriteComplete", "Tasks")';
+    appResources.writeTimer = '@Url.Action("WriteTimer", "Tasks")';
+    appResources.getTasksByRequirementId = '@Url.Action("Index", "Tasks", new { RequirementId = "requirementId" })'; // For data table
+    appResources.deleteTask = '@Url.Action("DeleteTask", "Tasks")';
+
+    appResources.allRequirementsUrl = '';
+    appResources.createRequirementUrl = '@Url.Action("CreateRequirement", "Requirements")';
+    appResources.updateRequirementUrl = '@Url.Action("UpdateRequirement", "Requirements")';
+    appResources.deleteRequirement = '@Url.Action("DeleteRequirement", "Requirements")';
+    appResources.getRequirementsByProject =  '@Url.Action("Index", "Requirements", new { ProjectId = "projectId"})'; // For data table
+    appResources.dataTableRequirementsAjaxHandler = '';
+    appResources.requirementStatistic = '@Url.Action("Requirement", "Statistic", new { ItemStatisticId = "requirementId", TimeAxis = 1, ReturnUrl = "returnUrl" })';
+
+    appResources.createProjectUrl = '@Url.Action("CreateProject", "Projects")';
+    appResources.updateProjectUrl = '@Url.Action("UpdateProject", "Projects")';
+    appResources.allProjectsUrl = '@Url.Action("Index", "Projects")';
+    appResources.dataTableProjectsAjaxHandler = '@Url.Action("DataTableAjaxHandler", "Projects")';
+    appResources.deleteProject = '@Url.Action("DeleteProject", "Projects")';
+    appResources.projectStatistic = '@Url.Action("Project", "Statistic", new { ItemStatisticId = "projectId", TimeAxis = 1, ReturnUrl = "returnUrl" })';
+
+</script>

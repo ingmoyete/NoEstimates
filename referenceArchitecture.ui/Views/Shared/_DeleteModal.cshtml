@@ -1,0 +1,28 @@
+﻿<!--Model[0] -> Id of the modal-->
+<!--Model[1] -> Heading  of the modal-->
+@model NoEstimates.Core.DTO.DTODeleteModal
+
+<div class="modal fade" id="@Model.IdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="modalForm-@Model.IdModal">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">@Model.Heading</h4>
+                </div>
+
+                <input name="Id" class="Id" type="hidden" value="-1" />
+                <input name="Name" type="hidden" value="-1" />
+                <input name="Description" type="hidden" value="-1" />
+                <div class="modal-body" data-text="@Model.Text"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default js-closeModal" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary js-submit">Ok</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

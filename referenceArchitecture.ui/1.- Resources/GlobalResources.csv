@@ -1,0 +1,24 @@
+Columna1,Columna2,Columna3
+id,text,Descripcion
+projectIcon,fa-briefcase,icon
+requirementIcon,fa-sitemap,icon
+tasksIcon,fa-tasks,icon
+configurationIcon,fa-gear,icon
+projectsLink,Projects,menu
+estimationsLink,Estimations,menu
+configurationLink,Configuration,menu
+dashboardLink,Dashboard,menu
+appTitle,NoEstimates,titulo de la app
+dashboardIcon,fa-dashboard,icon
+exceptionError,An error occur in {0} performing the action {1},error
+nameEntity,Name already exists,error
+idEntity,This item does not exist (id),error
+minuteError,The minutes must be lower than 60,timer
+secondError,The seconds must be lower than 60,timer
+hourError,The hours must be lower than 24,timer
+submitingTextError,The text could not be submited. Refresh Page and try again.,error
+changinHighlightError,An error occur while changing the color of the panel Refresh page and try again.,error
+statusSaveError,An error occur while saving the status of this task. Refresh page and try again.,error
+saveTimerError,An error occur while saving the time. Refresh page and try again.,error
+deleteProject,You cannot delete a project if it contains requirements.,error
+deleteRequirement,You cannot delete a requirement if it contains tasks.,error

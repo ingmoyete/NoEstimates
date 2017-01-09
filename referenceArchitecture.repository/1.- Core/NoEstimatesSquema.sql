@@ -1,0 +1,105 @@
+﻿--DROP TABLE Timer
+--DROP TABLE Hightlight
+--DROP TABLE Complete
+--DROP TABLE Configuration
+--DROP TABLE TasksCategories
+--DROP TABLE Categories
+--DROP TABLE Tasks
+--DROP TABLE Requirements
+--DROP TABLE Projects
+--EXEC sp_MSForEachTable 'TRUNCATE TABLE ?'
+
+CREATE TABLE Projects
+(
+	Id INT NOT NULL IDENTITY(1,1) PRIMARY KEY, 
+    Name VARCHAR(50) NOT NULL UNIQUE, 
+    [Description] VARCHAR(150) NOT NULL, 
+    IsCompleted BIT NOT NULL, 
+    CreationDate DATETIME NOT NULL, 
+    FinalizationDate DATETIME NOT NULL
+)
+
+GO
+
+CREATE TABLE Requirements
+(
+	Id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	ProjectId INT NOT NULL FOREIGN KEY REFERENCES Projects(Id),
+	Name VARCHAR(50) NOT NULL,
+	[Description] VARCHAR(150) NOT NULL,
+	IsComplete BIT NOT NULL,
+	CreationDate DATETIME NOT NULL,
+	FinalizationDate DATETIME NOT NULL
+)
+
+GO
+
+CREATE TABLE Categories
+(
+	Id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	Name VARCHAR(50)
+)
+
+GO
+
+CREATE TABLE Tasks
+(
+	Id INT NOT NULL IDENTITY(1,1)  PRIMARY KEY,
+	RequirementId INT NOT NULL FOREIGN KEY REFERENCES Requirements(Id),
+	[Description] VARCHAR(MAX) NOT NULL,
+	CreationDate DATETIME NOT NULL,
+)
+
+GO
+
+CREATE TABLE TasksCategories
+(
+	Id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	CategoriesId INT NOT NULL FOREIGN KEY REFERENCES Categories(Id),
+	TasksId INT NOT NULL FOREIGN KEY REFERENCES Tasks(Id)
+)
+
+GO
+
+CREATE TABLE Configuration
+(
+	Id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	[Key] VARCHAR(50) NOT NULL,
+	Value VARCHAR(50) NOT NULL
+)
+
+GO
+
+
+CREATE TABLE Highlight
+(
+	Id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	TaskId INT NOT NULL FOREIGN KEY REFERENCES Tasks,
+	Color INT NOT NULL -- Corresponds to an enum
+		-- Blue = 1,
+        --Yellow = 2,
+        --Red = 3,
+        --Green = 4
+)
+
+GO
+
+
+CREATE TABLE Complete
+(
+	Id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	TaskId INT NOT NULL FOREIGN KEY REFERENCES Tasks,
+	IsComplete BIT NOT NULL,
+	FinalizationDate DATETIME NOT NULL 
+)
+
+GO
+
+CREATE TABLE Timer
+(
+	Id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	TaskId INT NOT NULL FOREIGN KEY REFERENCES Tasks,
+	TimeInSeconds INT NOT NULL
+)
+
+

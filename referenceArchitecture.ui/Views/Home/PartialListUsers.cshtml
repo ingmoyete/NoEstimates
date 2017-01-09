@@ -1,0 +1,42 @@
+﻿@model IEnumerable<referenceArchitecture.Core.DTO.DTOExample>
+
+<!-- List of users-->
+<h3>List of users</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Identificator)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstField)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondField)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThirdField)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Identificator)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstField)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecondField)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThirdField)
+            </td>
+        </tr>
+    }
+
+</table>
+<hr />
+

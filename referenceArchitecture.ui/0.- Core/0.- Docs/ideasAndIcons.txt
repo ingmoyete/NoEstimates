@@ -1,0 +1,60 @@
+IDEAS
+-----
+Direct access to current requirement from dashboard
+
+remove with poupu
+
+same editpage for requirements and project
+
+ICONS
+-----
+
+cuadraditos, tablas  -> fa-th, fa-list-alt, fa-table
+
+Favoritos ->  fa-star, fa-star-o 
+
+graficas ->  fa-bar-chart-o , fa-signal 
+
+configuracion -> fa-gears, fa-gear, fa-wrench
+
+check de confirmacion -> fa-check
+
+aspa de cerrado - > fa-times
+
+flechas de menu en todas direcciones -> fa-angle-
+
+Eliminar -> fa-trash-o
+
+tarea abierta/ tarea cerrada ->  fa-folder-open-o, fa-folder-o, fa-folder, fa-folder-open  
+
+guardar tarea -> fa-save
+ 
+
+Categorias ->  fa-tag, fa-tags 
+
+
+proyectos -> fa-briefcase
+
+Requerimientos -> fa-sitemap
+
+tareas -> fa-tasks
+
+filtro -> fa-filter
+
+Mas informacion sobre proyecto o requerimiento -> fa-info-circle
+
+Fechas para estimaciones -> fa-arrow-left  
+ fa-arrow-right  
+ fa-arrow-up  
+ fa-arrow-down  
+
+Exclamacion de advertencia -> fa-exclamation-circle, fa-warning  
+
+
+Mas y menos de crear y eliminar ->  fa-plus, fa-minus  
+
+crear registro (pryecto requerimiento o tarea) - > fa-pencil
+
+cambia color tarea ->  fa-adjust, fa-tint
+
+editar proyecto, requerimiento o tarea -> fa-edit, fa-pencil-square-o  

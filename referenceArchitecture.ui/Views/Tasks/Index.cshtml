@@ -1,0 +1,169 @@
+﻿@using NoEstimates.Core.DTO
+@using NoEstimates.Core.Enums
+
+@model NoEstimates.Core.DTO.DTOTaskView
+@{
+    ViewBag.Title = LocalResources["title"];
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel-heading">
+            <div class="page-header">
+                <a href="@Url.Action("Index", "Projects")"><i class="fa @GlobalResources["projectIcon"] fa-fw"></i> @Model.IdsNames.ProjectName /</a>
+                <a href="@Url.Action("Index", "Requirements", new { ProjectId = Model.IdsNames.ProjectId })"><i class="fa @GlobalResources["requirementIcon"] fa-fw"></i> @Model.IdsNames.RequirementName /</a>
+                <i class="fa @GlobalResources["tasksIcon"] fa-fw"></i> <span data-placement="top" rel="tooltip" title="All: @Model.TotalTasks, Completed: @Model.CompletedTasks">Tasks</span> 
+                <a href="#" class="btn btn-default btn-sm dropdown-toggle pull-right js-insert-task"
+                   data-toggle="modal"
+                   data-target="#insertTaskModal"                                    
+                   data-backdrop="static" 
+                   data-keyboard="false"
+                   data-requirement-id="@Model.IdsNames.RequirementId">
+                    <span class="fa fa-plus fa-fw"></span>@LocalResources["createTaskLink"]
+                </a>
+
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                        @LocalResources["filterButton"]
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" role="menu">
+                        <li>
+                            <a class="filterByColor" href="#"><i class="fa fa-circle fa-fw colorBlue" data-color="panel-primary"></i> @LocalResources["blueButton"]</a>
+                        </li>
+                        <li>
+                            <a class="filterByColor" href="#"><i class="fa fa-circle fa-fw colorYellow" data-color="panel-yellow"></i> @LocalResources["yellowButton"]</a>
+                        </li>
+                        <li>
+                            <a class="filterByColor" href="#"><i class="fa fa-circle fa-fw colorRed" data-color="panel-red"></i> @LocalResources["redButton"]</a>
+                        </li>
+                        <li>
+                            <a class="filterByColor" href="#"><i class="complete fa fa-circle fa-fw colorGreen" data-color="panel-green"></i> @LocalResources["completeButton"]</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="filterByDate" href="#" data-filtering-type="1"><i class="fa fa-filter fa-fw"></i> @LocalResources["ascendingFilter"]</a>
+                        </li>
+                        <li>
+                            <a class="filterByDate" href="#" data-filtering-type="2"><i class="fa fa-filter fa-fw"></i> @LocalResources["descendingFilter"]</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<!-- /.row -->
+<div class="row panelContainer">
+    @foreach (var panel in Model.ListTaskPanels)
+    {
+        <div class="col-lg-4" data-creation-date="@panel.Task.CreationDate">
+            <div class="panel @(panel.Complete.IsComplete ? panel.Complete.IsCompleteColorClass : panel.Highlight.PanelColorClass)">
+                <div class="panel-heading">
+                    <form method="post" class="colorForm hp-inline">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="Color" value="@panel.Highlight.Color" />
+                        <input type="hidden" name="TaskId" value="@panel.Task.Id    ">
+                        <input type="hidden" name="Id" value="@panel.Highlight.Id" />
+                    </form>
+                    <button @panel.Complete.disableIfComplete data-enum-value="@((int)HighlightColor.Green)" class="colorIcons hidden"><i class="complete fa fa-circle fa-fw colorGreen" data-color="panel-green"></i></button>
+                    <button @panel.Complete.disableIfComplete data-enum-value="@((int)HighlightColor.Blue)" class="colorIcons"><i class="@panel.Highlight.BlueBallClass fa fa-circle fa-fw colorBlue" data-color="panel-primary"></i></button>
+                    <button @panel.Complete.disableIfComplete data-enum-value="@((int)HighlightColor.Yellow)" class="colorIcons"><i class="@panel.Highlight.YellowBallClass fa fa-circle fa-fw colorYellow" data-color="panel-yellow"></i></button>
+                    <button @panel.Complete.disableIfComplete data-enum-value="@((int)HighlightColor.Red)" class="colorIcons lastOne"><i class="@panel.Highlight.RedBallClass fa fa-circle fa-fw colorRed" data-color="panel-red"></i></button>
+                    <div class="pull-right">
+                        <div class="btn-group">
+
+                            <button  @panel.Complete.disableIfComplete type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                Tags
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <li>
+                                    <a href="#">Action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Another action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Something else here</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#">Create Tags</a>
+                                </li>
+                            </ul>
+                            <button @panel.Complete.disableIfComplete class="hp-button-no-style removeTaskIcon js-delete-task"
+                                data-task-id="@panel.Task.Id"
+                                data-toggle="modal"
+                                data-target="#deleteTaskModal"                                    
+                                data-backdrop="static" 
+                                data-keyboard="false"><i class="fa fa-trash-o fa-fw"></i></button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel-body">
+                    <form method="post" class="taskTextForm">
+                        @Html.AntiForgeryToken()
+                        <!-- Hidden -->
+                        <input type="hidden" name="Id" value="@panel.Task.Id" />
+                        <input type="hidden" name="RequirementId" value="@Model.IdsNames.RequirementId" />
+                        <input type="hidden" class="lastTextValueFromDb" value="@panel.Task.Description" />
+
+                        <!-- Inputs -->
+                        <textarea @panel.Complete.disableIfComplete name="Description" class="taskText">@panel.Task.Description</textarea>
+                    </form>
+                </div>
+                <div class="panel-footer">
+                    <div class="form-group">
+                        <!-- Timer -->
+                        <form method="post" class="saveTimer hp-inline">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="TimeInSeconds" class="TimeInSeconds" value="" />
+                            <input type="hidden" name="TaskId" class="TaskId" value="@panel.Task.Id" />
+                            <input type="hidden" name="Id" class="Id" value="@panel.Timer.Id" />
+                        </form>
+
+                        <!-- Ok/Cancel editing text -->
+                        <form method="post" class="saveStatusForm hp-inline">
+                            <!-- Hidden -->
+                            <input type="hidden" name="TaskId" value="@panel.Task.Id" />
+                            <input type="hidden" name="Id" class="Id" value="@panel.Complete.Id" />
+                            <input type="hidden" name="IsComplete" class="IsComplete" value="@panel.Complete.IsComplete.ToString()" />
+                            <!-- Inputs -->
+                            @Html.AntiForgeryToken()
+                        </form>
+
+                        <!-- Buttons and inputs -->
+                        <input @panel.Complete.disableIfComplete type="text" class="timer hasNotBeenSet" value="@panel.Timer.TimerValue" />
+                        <button @panel.Complete.disableIfComplete class="js-finish-task @(panel.Complete.IsComplete ? "hidden" : "") editingNextTotimer btn btn-default btn-sm pull-right">@LocalResources["finishTaskButton"]</button>
+                        <button class="js-open-task @(panel.Complete.IsComplete ? "" : "hidden") btn btn-success btn-sm pull-right">@LocalResources["openTaskButton"]</button>
+                        <button @panel.Complete.disableIfComplete class="resume-timer-btn editingNextTotimer btn btn-default btn-sm pull-right"><i class="fa fa-play fa-fw"></i></button>
+                        <button @panel.Complete.disableIfComplete class="pause-timer-btn btn btn-warning btn-sm pull-right hidden"><i class="fa fa-pause fa-fw"></i></button>
+                        <button @panel.Complete.disableIfComplete class="js-ok-text editingTextButtons btn btn-success btn-sm pull-right hidden"><i class="fa fa-check fa-fw"></i></button>
+                        <button @panel.Complete.disableIfComplete class="js-cancel-text editingTextButtons  btn btn-danger btn-sm pull-right hidden"><i class="fa fa-times fa-fw"></i></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Modals -->
+@Html.Partial("_InsertModal", "insertTaskModal")
+@Html.Partial("_DeleteModal", new DTODeleteModal { IdModal = "deleteTaskModal", Heading = LocalResources["headingDeleteModal"], Text = LocalResources["textDeleteModal"] })
+
+
+@section scripts
+{
+    <script>
+        appResources.allTasksUrl = '@Url.Action("Index", "Tasks", new {RequirementId = Model.IdsNames.RequirementId })';
+    </script>
+
+    @Scripts.Render("~/jsViews/Tasks")
+    @Scripts.Render("~/bundles/timer")
+    @Scripts.Render("~/bundles/mask")
+}

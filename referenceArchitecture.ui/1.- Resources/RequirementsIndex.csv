@@ -1,0 +1,10 @@
+id,text,Descripcion
+title,Requirements,title
+heading,Requirements,heading
+createRequirementLink,New Requirement,link
+requirementStatistics,See Statistics,requirementTable
+deleteRequirement,Delete Requirement,requirementTable
+editRequirement,Edit Requirement,requirementTable
+toTasks,Go to Tasks,requirementTable
+headingDeleteModal,Delete a Requirement,modal
+textDeleteModal,"Do you wan to delete the requirement: ""requirementName""",modal
